@@ -3,19 +3,32 @@
 
 filetype off                    " Avoid a Vim/Pathogen bug
 call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+call pathogen#infect()
 
 set nocompatible                " Don't maintain compatibility with vi
 syntax on                       " Highlight known syntaxes
 filetype plugin indent on
 
+
 " Configuration
 " -------------
 
 colorscheme molokai
+if has('termguicolors')
+  set t_Co=256
+  set termguicolors
+  " colorscheme OceanicNext
+  " colorscheme ayu
+  " colorscheme onedark
+  let g:onedark_terminal_italics = 1
+  colorscheme gruvbox
+  let g:gruvbox_contrast_dark = 'hard'
+  " colorscheme dracula
+endif
+
 set background=dark
-set guifont=Inconsolata:h24     " Huge and not always there ...
-set guifont=Monaco:h18
+set guifont=Space\ Mono:h14
+" set guifont=Monaco:h14
 set guioptions-=T               " Remove GUI toolbar
 set visualbell                  " Suppress audio/visual error bell
 set notimeout                   " No command timeout
@@ -26,6 +39,7 @@ set tabstop=2                   " Tab settings
 set autoindent
 set smarttab                    " Use shiftwidth to tab at line beginning
 set shiftwidth=2                " Width of autoindent
+autocmd FileType py setlocal shiftwidth=4
 set number                      " Line numbers
 set nowrap                      " No wrapping
 set ignorecase                  " Ignore case
@@ -53,8 +67,8 @@ set noswapfile                  " No swap file
 set nobackup                    " No backup file
 set nowritebackup
 
-set autowriteall                " Save when focus is lost
-autocmd FocusLost * silent! wall
+" set autowriteall                " Save when focus is lost
+" autocmd FocusLost * silent! wall
 
 " Keybindings
 " -----------
@@ -142,21 +156,26 @@ map <M-D-Left>  :bp<CR>
 map <M-D-Right> :bn<CR>
 
 " FuzzyFinder and switchback commands
-map <leader>e   :e#<CR>
-map <leader>b   :FufBuffer<CR>
-map <leader>f   <Plug>PeepOpen
-map <leader><C-N> :FufFile **/<CR>
+" map <leader>e   :e#<CR>
+" map <leader>b   :FufBuffer<CR>
+" map <leader>f   <Plug>PeepOpen
+" map <leader><C-N> :FufFile **/<CR>
 
 " Command-T
-map <D-e>       :CommandTBuffer<CR>
-map <D-N>       :CommandTFlush<CR>:CommandT<CR>
-imap <D-N>      <Esc>:CommandTFlush<CR>:CommandT<CR>
-nmap <leader>t  :CommandT<CR>
+" map <D-e>       :CommandTBuffer<CR>
+" map <D-N>       :CommandTFlush<CR>:CommandT<CR>
+" imap <D-N>      <Esc>:CommandTFlush<CR>:CommandT<CR>
+" nmap <leader>t  :CommandT<CR>
 
-" Re-index ctags, including Gem home
-map <leader>rt  :!/usr/local/bin/ctags -R --exclude=.git --exclude=log --exclude=coverage * `rvm gemhome`/*<CR>
-" Prevents generating of rdoc. This will prevent tags file to be generated
-" map <leader>T   :!rdoc -f tags -o tags * `rvm gemhome` --exclude=.git --exclude=log
+" CtrlP
+map <leader>p :CtrlP<CR>
+" let g:ctrlp_custom_ignore = '\v[\/](node_modules)|(\.(git|hg|svn))$'
+
+" AG
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+  let g:ctrlp_use_caching = 0
+endif
 
 " Git blame
 map <leader>g   :Gblame<CR>
@@ -216,19 +235,6 @@ function! AckVisual()
   cw
 endfunction
 
-" Find unused Cucumber steps
-command! CucumberFindUnusedSteps :call CucumberFindUnusedSteps()
-function! CucumberFindUnusedSteps()
-  let olderrorformat = &l:errorformat
-  try
-    set errorformat=%m#\ %f:%l
-    cexpr system('bundle exec cucumber --no-profile --no-color --format usage --dry-run features \| grep "NOT MATCHED BY ANY STEPS" -B1 \| egrep -v "(--\|NOT MATCHED BY ANY STEPS)"')
-    cwindow
-  finally
-    let &l:errorformat = olderrorformat
-  endtry
-endfunction
-
 " AckGrep current word
 map <leader>a :call AckGrep()<CR>
 " AckVisual current selection
@@ -250,6 +256,9 @@ au BufRead,BufNewFile Guardfile* set filetype=ruby
 au BufRead,BufNewFile Vagrantfile set filetype=ruby
 au BufRead,BufNewFile soloistrc set filetype=ruby
 
+" Jinja
+au BufRead,BufNewFile *.html.jinja set filetype=jinja
+
 " Java, PHP
 autocmd BufWritePre *.java,*.php :%s/\s\+$//e
 
@@ -265,6 +274,43 @@ autocmd FileType scss set iskeyword=@,48-57,_,-,?,!,192-255
 
 " Insert ' => '
 autocmd FileType ruby imap  <Space>=><Space>
+
+
+" syntax vars
+" -----------
+
+" this doesn't work yet
+let g:javascript_plugin_flow = 0
+
+
+
+" Syntastic
+" ---------
+
+" set statusline+=\ \|\ %#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_jsx_checkers = ['eslint']
+" let g:syntastic_python_checkers = ['flake8']
+" let g:syntastic_python_flake8_args='--max-line-length=120 --ignore=E402,E731,E711'
+
+
+" Plug
+" ----
+
+" call plug#begin('~/.vim/plugged')
+
+" Plug 'mtscout6/syntastic-local-eslint.vim'
+
+" call plug#end()
+
 
 " .vimrc.local Options
 " --------------------
