@@ -12,6 +12,8 @@ CtrlP is set to use [ag (aka The Silver Searcher)](https://github.com/ggreer/the
 
     brew install the_silver_searcher
 
+Install optional Space Mono font https://fonts.google.com/specimen/Space+Mono
+
 Open vim (ignoring any errors) and run:
 
     :PlugInstall
