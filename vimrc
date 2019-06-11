@@ -18,7 +18,6 @@ call plug#begin('~/.vim/plugged')
 " functionality
 Plug 'mileszs/ack.vim'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'morhetz/gruvbox'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
@@ -26,10 +25,14 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'kana/vim-textobj-user'
 Plug 'tpope/vim-unimpaired'
+" Plug 'sirver/ultisnips'
+Plug 'embear/vim-localvimrc'
+Plug 'ervandew/supertab'
+Plug 'vim-airline/vim-airline'
 
 " lint
 Plug 'w0rp/ale'
-Plug 'nvie/vim-flake8'
+" Plug 'nvie/vim-flake8'
 
 " syntax
 Plug 'Glench/Vim-Jinja2-Syntax'
@@ -38,8 +41,13 @@ Plug 'maksimr/vim-jsbeautify'
 Plug 'mxw/vim-jsx'
 Plug 'plasticboy/vim-markdown'
 Plug 'digitaltoad/vim-pug'
+Plug 'elixir-editors/vim-elixir'
+Plug 'tikhomirov/vim-glsl'
+Plug 'stephenway/postcss.vim'
+Plug 'vim-python/python-syntax'
 
 " themes
+Plug 'morhetz/gruvbox'
 Plug 'ayu-theme/ayu-vim'
 Plug 'vim-scripts/molokai'
 Plug 'mhartington/oceanic-next'
@@ -70,23 +78,31 @@ if has('termguicolors')
 endif
 
 set background=dark
-set guifont=Space\ Mono:h14
-" set guifont=Monaco:h14
+if exists('+guifont')
+  " set guifont=Operator\ Mono:h16
+  set guifont=Fira\ Code:h16
+  " set guifont=Space\ Mono:h14
+  " set guifont=Monaco:h14
+endif
 set guioptions-=T               " Remove GUI toolbar
 set visualbell                  " Suppress audio/visual error bell
 set notimeout                   " No command timeout
 set showcmd                     " Show typed command prefixes while waiting for operator
 
+set backspace=indent,eol,start
 set expandtab                   " Use soft tabs
 set tabstop=2                   " Tab settings
 set autoindent
 set smarttab                    " Use shiftwidth to tab at line beginning
 set shiftwidth=2                " Width of autoindent
 autocmd FileType py setlocal shiftwidth=4
+autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
 set number                      " Line numbers
 set nowrap                      " No wrapping
 set ignorecase                  " Ignore case
 set smartcase                   " ... unless uppercase characters are involved
+autocmd FileType markdown setlocal spell
+autocmd FileType markdown setlocal wrap
 
 set list                        " Show whitespace
 set listchars=tab:▸\ ,trail:¬   " UTF-8 characters for trailing whitespace
@@ -100,7 +116,7 @@ set scrolloff=3                 " Scroll when the cursor is 3 lines from edge
 set cursorline                  " Highlight current line
 set laststatus=2                " Always show statusline
 set statusline=
-set statusline+=\ %t\ \|\ len:\ \%L\ \|\ type:\ %Y\ \|\ ascii:\ \%03.3b\ \|\ hex:\ %2.2B\ \|\ line:\ \%2l
+set statusline+=\ %t\ \|\ len:\ \%L\ \|\ type:\ %Y\ \|\ ascii:\ \%03.3b\ \|\ hex:\ %2.2B\ \|\ line:\ \%2l\ \|\ col:\ %2c
 
 set incsearch                   " Incremental search
 set history=1024                " History size
@@ -212,10 +228,17 @@ map <M-D-Right> :bn<CR>
 
 " CtrlP
 map <leader>p :CtrlP<CR>
+map <leader>b :CtrlPBuffer<CR>
 " let g:ctrlp_custom_ignore = '\v[\/](node_modules)|(\.(git|hg|svn))$'
 
+" ripgrep
+if executable('rg')
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+
 " AG
-if executable('ag')
+elseif executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
   let g:ctrlp_use_caching = 0
 endif
@@ -278,10 +301,28 @@ function! AckVisual()
   cw
 endfunction
 
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
 " AckGrep current word
-map <leader>a :call AckGrep()<CR>
+" map <leader>a :call AckGrep()<CR>
 " AckVisual current selection
-vmap <leader>a :call AckVisual()<CR>
+" vmap <leader>a :call AckVisual()<CR>
+
+" ack.vim
+map <leader>a :Ack 
+
+
+" UltiSnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+" let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
+
 
 " Whitespace & highlighting & language-specific config
 " ----------------------------------------------------
@@ -306,7 +347,7 @@ au BufRead,BufNewFile *.html.jinja set filetype=jinja
 autocmd BufWritePre *.java,*.php :%s/\s\+$//e
 
 " Highlight JSON files as javascript
-autocmd BufRead,BufNewFile *.json set filetype=javascript
+" autocmd BufRead,BufNewFile *.json set filetype=javascript
 
 " Highlight Jasmine fixture files as HTML
 autocmd BufRead,BufNewFile *.jasmine_fixture set filetype=html
@@ -322,8 +363,14 @@ autocmd FileType ruby imap  <Space>=><Space>
 " syntax vars
 " -----------
 
+" markdown
+let g:vim_markdown_folding_disabled = 1
+
 " this doesn't work yet
 let g:javascript_plugin_flow = 0
+
+" python
+let g:python_highlight_all = 1
 
 
 
@@ -343,6 +390,46 @@ let g:javascript_plugin_flow = 0
 " let g:syntastic_jsx_checkers = ['eslint']
 " let g:syntastic_python_checkers = ['flake8']
 " let g:syntastic_python_flake8_args='--max-line-length=120 --ignore=E402,E731,E711'
+
+
+" airline
+" ---
+let g:airline#extensions#ale#enabled = 1
+
+
+" ale
+" ---
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_fix_on_save = 0
+let g:ale_fixers = {
+\  'javascript': ['prettier', 'eslint'],
+\  'json': ['prettier'],
+\  'css': ['prettier'],
+\  'scss': ['prettier'],
+\  'markdown': ['prettier'],
+\  'python': ['autopep8'],
+\  'go': ['gofmt'],
+\}
+
+highlight clear ALEErrorSign " otherwise uses error bg color (typically red)
+highlight clear ALEWarningSign " otherwise uses error bg color (typically red)
+
+" let g:ale_sign_error = 'X' " could use emoji
+" let g:ale_sign_warning = '?' " could use emoji
+" let g:ale_statusline_format = ['X %d', '? %d', '']
+
+" %linter% is the name of the linter that provided the message
+" %s is the error or warning message
+let g:ale_echo_msg_format = '%linter% says %s'
+
+" Map keys to navigate between lines with errors and warnings.
+nnoremap <leader>an :ALENextWrap<cr>
+nnoremap <leader>ap :ALEPreviousWrap<cr>
+
+" Go to definition
+nnoremap <leader>d :ALEGoToDefinition<cr>
+
+map <leader>f :ALEFix<CR>
 
 
 " .vimrc.local Options
