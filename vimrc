@@ -68,8 +68,8 @@ endif
 set background=dark
 if exists('+guifont')
   " set guifont=Operator\ Mono:h16
-  set guifont=Fira\ Code:h16
-  " set guifont=Space\ Mono:h14
+  " set guifont=Fira\ Code:h16
+  set guifont=Space\ Mono:h14
   " set guifont=Monaco:h14
 endif
 set guioptions-=T               " Remove GUI toolbar

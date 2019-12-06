@@ -14,6 +14,7 @@ CtrlP is set to use either [rg (aka ripgrep)](https://github.com/BurntSushi/ripg
     brew install the_silver_searcher
 
 Install optional Space Mono font https://fonts.google.com/specimen/Space+Mono
+A few other fonts are commented out, and you can activate them in the `vimrc`. Fira Code is particularly nice but costs money.
 
 Open vim (ignoring any errors) and run:
 
