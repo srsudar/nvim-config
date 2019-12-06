@@ -8,8 +8,9 @@
     cd ~/.vim
     ln -s ~/.vim/vimrc ~/.vimrc
 
-CtrlP is set to use [ag (aka The Silver Searcher)](https://github.com/ggreer/the_silver_searcher). Install it with:
+CtrlP is set to use either [rg (aka ripgrep)](https://github.com/BurntSushi/ripgrep) or [ag (aka The Silver Searcher)](https://github.com/ggreer/the_silver_searcher). Install them with:
 
+    brew install ripgrep
     brew install the_silver_searcher
 
 Install optional Space Mono font https://fonts.google.com/specimen/Space+Mono
@@ -26,7 +27,7 @@ Open vim (ignoring any errors) and run:
 
 ## Important Features
 
-### CtrlP and ag
+### CtrlP and rg
 
 While in a git repo, type `, + p` to begin a fuzzy search on its filenames. Hit `return` or `T` to open the file in the current buffer or a new tab.
 
