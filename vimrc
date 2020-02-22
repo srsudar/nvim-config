@@ -13,26 +13,16 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'kana/vim-textobj-user'
 Plug 'tpope/vim-unimpaired'
-" Plug 'sirver/ultisnips'
 Plug 'embear/vim-localvimrc'
 Plug 'ervandew/supertab'
 Plug 'vim-airline/vim-airline'
 
 " lint
-Plug 'w0rp/ale'
-" Plug 'nvie/vim-flake8'
+Plug 'w0rp/ale', {'tag': 'v2.6.0'}
 
 " syntax
-Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'pangloss/vim-javascript'
-Plug 'maksimr/vim-jsbeautify'
-Plug 'mxw/vim-jsx'
-Plug 'plasticboy/vim-markdown'
-Plug 'digitaltoad/vim-pug'
-Plug 'elixir-editors/vim-elixir'
-Plug 'tikhomirov/vim-glsl'
+Plug 'sheerun/vim-polyglot'
 Plug 'stephenway/postcss.vim'
-Plug 'vim-python/python-syntax'
 
 " themes
 Plug 'morhetz/gruvbox'
@@ -43,8 +33,6 @@ Plug 'joshdick/onedark.vim'
 Plug 'dracula/vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-vividchalk'
-
-" Plug 'mtscout6/syntastic-local-eslint.vim'
 
 call plug#end()
 
@@ -391,6 +379,7 @@ let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_fix_on_save = 0
 let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint'],
+\  'typescript': ['prettier'],
 \  'json': ['prettier'],
 \  'css': ['prettier'],
 \  'scss': ['prettier'],
