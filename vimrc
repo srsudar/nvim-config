@@ -17,8 +17,9 @@ Plug 'embear/vim-localvimrc'
 Plug 'ervandew/supertab'
 Plug 'vim-airline/vim-airline'
 
-" lint
+" language server protocol
 Plug 'w0rp/ale', {'tag': 'v2.6.0'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " syntax
 Plug 'sheerun/vim-polyglot'
@@ -33,6 +34,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'dracula/vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-vividchalk'
+Plug '~/Projects/outer-sunset-colors'
 
 call plug#end()
 
@@ -40,16 +42,17 @@ call plug#end()
 " Configuration
 " -------------
 
-colorscheme molokai
+" colorscheme molokai
+colorscheme OuterSunset
 if has('termguicolors')
   set t_Co=256
   set termguicolors
   " colorscheme OceanicNext
   " colorscheme ayu
   " colorscheme onedark
-  let g:onedark_terminal_italics = 1
-  colorscheme gruvbox
-  let g:gruvbox_contrast_dark = 'hard'
+  " let g:onedark_terminal_italics = 1
+  " colorscheme gruvbox
+  " let g:gruvbox_contrast_dark = 'hard'
   " colorscheme dracula
 endif
 
@@ -77,8 +80,7 @@ set number                      " Line numbers
 set nowrap                      " No wrapping
 set ignorecase                  " Ignore case
 set smartcase                   " ... unless uppercase characters are involved
-autocmd FileType markdown setlocal spell
-autocmd FileType markdown setlocal wrap
+autocmd FileType markdown setlocal spell wrap linebreak breakat&vim
 
 set list                        " Show whitespace
 set listchars=tab:▸\ ,trail:¬   " UTF-8 characters for trailing whitespace
@@ -239,6 +241,9 @@ imap <F1>           <Nop>
 " Easy access to the shell
 map <Leader><Leader> :!
 
+" Change directory to current file
+map <Leader>cd :lcd %:p:h<CR>
+
 " Pad comment delimeters with spaces
 let NERDSpaceDelims = 1
 
@@ -379,7 +384,9 @@ let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_fix_on_save = 0
 let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint'],
+\  'javascriptreact': ['prettier', 'eslint'],
 \  'typescript': ['prettier'],
+\  'typescriptreact': ['prettier'],
 \  'json': ['prettier'],
 \  'css': ['prettier'],
 \  'scss': ['prettier'],
@@ -400,13 +407,31 @@ highlight clear ALEWarningSign " otherwise uses error bg color (typically red)
 let g:ale_echo_msg_format = '%linter% says %s'
 
 " Map keys to navigate between lines with errors and warnings.
-nnoremap <leader>an :ALENextWrap<cr>
+nnoremap <leader>an :ALENext -error -wrap<cr>
 nnoremap <leader>ap :ALEPreviousWrap<cr>
 
 " Go to definition
 nnoremap <leader>d :ALEGoToDefinition<cr>
 
 map <leader>f :ALEFix<CR>
+
+
+" CoC
+" ---
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 
 " .vimrc.local Options
