@@ -1,41 +1,43 @@
-# Kyle's Vim Config
+# Kyle's NeoVim Config
 
 ## To Install
 
-(Re)move `~/.vim` and `~/.vimrc` if you have them already, and run:
+Create or back up `~/.config/nvim`. Then clone the repo.
 
-    git clone git@github.com:qarren/vim-config.git ~/.vim
-    cd ~/.vim
-    ln -s ~/.vim/vimrc ~/.vimrc
+    mv ~/.config/nvim ~/.config/old-nvim
+    git clone git@github.com:qarren/vim-config.git ~/.config/nvim
 
-CtrlP is set to use either [rg (aka ripgrep)](https://github.com/BurntSushi/ripgrep) or [ag (aka The Silver Searcher)](https://github.com/ggreer/the_silver_searcher). Install them with:
+Telescope needs [rg (aka ripgrep)](https://github.com/BurntSushi/ripgrep) to search the content of text files. 
 
     brew install ripgrep
-    brew install the_silver_searcher
 
 Install optional Space Mono font https://fonts.google.com/specimen/Space+Mono
-A few other fonts are commented out, and you can activate them in the `vimrc`. Fira Code is particularly nice but costs money.
+A few other fonts are commented out, and you can activate them in the `init.vim`. Fira Code is particularly nice but costs money.
 
-Open vim (ignoring any errors) and run:
+Open nvim (ignoring any errors) and run:
 
-    :PlugInstall
+    :PackerInstall
 
 
-## On vim-plug
+## On Packer 
 
-`vim-plug` is a package manager for vim. [Read about it here](https://github.com/junegunn/vim-plug).
+`packer.nvim` is a package manager for neovim. [Read about it here](https://github.com/wbthomason/packer.nvim).
 
 
 ## Important Features
 
-### CtrlP and rg
+### Telescope
 
-While in a git repo, type `, + p` to begin a fuzzy search on its filenames. Hit `return` or `T` to open the file in the current buffer or a new tab.
+While in a git repo, type `, + p` to begin a fuzzy search on its filenames. Hit `return` to open the file in the current buffer or a new tab. [More on Telescope and its mappings here.](https://github.com/nvim-telescope/telescope.nvim)
 
-### NERDTree
+### nvim-lsp-config 
 
-Hit `\\` to view the current directory. Open/close a directory with `return`, enter a directory with `C`, and move up one directory with `u`. `:help` is useful.
+NeoVim has built-in support for the Language Server Protocol. `nvim-lsp-config` takes care of setting up and managing the configurations required to communicate with different servers. To add or remove a server config, open `lua/kickstart.lua` and edit the `servers` list. Note that things like `eslint` and `prettier` do not conform to the LSP and require support through something like `null-ls`. [Read more about it here.](https://github.com/neovim/nvim-lspconfig) 
 
-### ale
+### nvim-treesitter
 
-ale is the spiritual successor to syntastic. You should be able to get it to run almost any linter.
+NeoVim has experimental tree sitter support. This allows navigation of code based on functional groupings (and a lot more). I haven't gone very deep here, but something like `[m` will move your cursor to start of the next function. [Read more about it here.](https://github.com/nvim-treesitter/nvim-treesitter)
+
+### NeoTree
+
+Hit `\\` to view the current directory. Open/close a directory with `return`, enter a directory with `.`, and move up one directory with `U`. `:help` is useful.
