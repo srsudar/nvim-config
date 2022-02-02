@@ -1,9 +1,3 @@
---[[
--- Generated from kickstart.nvim
--- Not sure if LUA is better for configuring VIM than
--- vimscript.
---]]
-
 --Set highlight on search
 vim.o.hlsearch = false
 
@@ -292,3 +286,16 @@ require("null-ls").setup {
     -- require("null-ls").builtins.formatting.deno_fmt,
   },
 }
+
+-- NeoTree setup
+require('neo-tree').setup {
+  filesystem = {
+    window = {
+      mappings = {
+        ["<bs>"] = "navigate_up",
+        ["U"] = "navigate_up",
+      }
+    }
+  }
+}
+vim.cmd([[nnoremap \ :NeoTreeRevealToggle<cr>]])

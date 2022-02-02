@@ -1,9 +1,13 @@
 " TODO
+" float color
 " trouble?
 
 " Load Packer plugins
 lua require('plugins')
 lua require('kickstart')
+
+" Load nvim-lsp configs
+" lua require('lsp')
 
 
 "
@@ -11,6 +15,7 @@ lua require('kickstart')
 " ----------------------
 
 set tabstop=2                   " Tab settings
+set shiftwidth=2
 
 set autoread                    " No prompt for file changes outside Vim
 set noswapfile                  " No swap file
@@ -30,11 +35,6 @@ map <leader>rv  :source ~/.config/nvim/init.vim<CR>
 
 " Change directory to current file
 map <Leader>cd :lcd %:p:h<CR>
-
-
-"
-" Colors and UI
-" -------------
 
 " colorscheme molokai
 colorscheme OuterSunset
