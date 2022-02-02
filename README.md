@@ -7,6 +7,8 @@ Create or back up `~/.config/nvim`. Then clone the repo.
     mv ~/.config/nvim ~/.config/old-nvim
     git clone git@github.com:qarren/vim-config.git ~/.config/nvim
 
+Install Packer using [these quickstart instructions](https://github.com/wbthomason/packer.nvim).
+
 Telescope needs [rg (aka ripgrep)](https://github.com/BurntSushi/ripgrep) to search the content of text files. 
 
     brew install ripgrep
