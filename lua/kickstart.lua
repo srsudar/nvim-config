@@ -294,8 +294,18 @@ require('neo-tree').setup {
       mappings = {
         ["<bs>"] = "navigate_up",
         ["U"] = "navigate_up",
+				["T"] = "open_tab",
       }
-    }
-  }
+    },
+		commands = {
+			open_tab = function (state)
+				local utils = require('neo-tree.utils')
+				local tree = state.tree
+  			local node = tree:get_node()
+				local path = node:get_id()
+				utils.open_file(state, path, 'tabedit') 
+			end
+		},
+  },
 }
 vim.cmd([[nnoremap \ :NeoTreeRevealToggle<cr>]])
