@@ -36,6 +36,10 @@ map <leader>rv  :source ~/.config/nvim/init.vim<CR>
 " Change directory to current file
 map <Leader>cd :lcd %:p:h<CR>
 
+" Indent/unindent visual mode selection
+vmap <tab>      >gv
+vmap <S-tab>    <gv
+
 " colorscheme molokai
 colorscheme OuterSunset
 if has('termguicolors')
