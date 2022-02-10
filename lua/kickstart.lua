@@ -208,13 +208,11 @@ lspconfig.denols.setup {
 	},
 }
 
---[[
 lspconfig.tsserver.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   root_dir = lspconfig.util.root_pattern("tsconfig.json"),
 }
-]]
 
 -- Example custom server
 -- Make runtime files discoverable to the server
@@ -300,11 +298,14 @@ cmp.setup {
 -- null-ls setup
 require("null-ls").setup {
   sources = {
-    require("null-ls").builtins.formatting.black,
+    require("null-ls").builtins.formatting.prettier,
+    require("null-ls").builtins.diagnostics.eslint,
+    -- require("null-ls").builtins.formatting.black,
     -- require("null-ls").builtins.formatting.gofmt,
     -- require("null-ls").builtins.formatting.rustfmt,
     -- require("null-ls").builtins.formatting.deno_fmt,
   },
+  root_dir = lspconfig.util.root_pattern(".prettierrc"),
 }
 
 -- NeoTree setup
@@ -329,3 +330,7 @@ require('neo-tree').setup {
   },
 }
 vim.cmd([[nnoremap \ :NeoTreeRevealToggle<cr>]])
+
+-- trying this?
+vim.cmd([[ command! -nargs=1 Browse silent exec '!open "<args>"' ]])
+vim.g.nvim_tree_disable_netrw = 0

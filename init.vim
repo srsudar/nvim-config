@@ -16,6 +16,9 @@ lua require('kickstart')
 
 set tabstop=2                   " Tab settings
 set shiftwidth=2
+set expandtab
+set smarttab
+set autoindent
 
 set autoread                    " No prompt for file changes outside Vim
 set noswapfile                  " No swap file
