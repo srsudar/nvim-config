@@ -43,6 +43,11 @@ map <Leader>cd :lcd %:p:h<CR>
 vmap <tab>      >gv
 vmap <S-tab>    <gv
 
+" make ctrl+c work 
+" set clipboard=unnamed
+" set clipboard+=unnamedplus
+vnoremap <C-c> "*y
+
 " colorscheme molokai
 colorscheme OuterSunset
 if has('termguicolors')
