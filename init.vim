@@ -19,6 +19,7 @@ set shiftwidth=2
 set expandtab
 set smarttab
 set autoindent
+set smartindent
 
 set autoread                    " No prompt for file changes outside Vim
 set noswapfile                  " No swap file
@@ -39,6 +40,9 @@ map <leader>rv  :source ~/.config/nvim/init.vim<CR>
 " Change directory to current file
 map <Leader>cd :lcd %:p:h<CR>
 
+" Go back in the jump list
+map gb <C-o><CR>
+
 " Indent/unindent visual mode selection
 vmap <tab>      >gv
 vmap <S-tab>    <gv
@@ -46,6 +50,7 @@ vmap <S-tab>    <gv
 " make ctrl+c work 
 " set clipboard=unnamed
 " set clipboard+=unnamedplus
+" vnoremap <C-c>  "+y
 vnoremap <C-c> "*y
 
 " colorscheme molokai

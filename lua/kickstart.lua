@@ -84,6 +84,9 @@ require('telescope').setup {
         ['<C-d>'] = false,
       },
     },
+    file_ignore_patterns = {
+      "node_modules",
+    },
   },
 }
 
@@ -302,7 +305,9 @@ cmp.setup {
 -- null-ls setup
 require("null-ls").setup {
   sources = {
-    require("null-ls").builtins.formatting.prettier,
+    require("null-ls").builtins.formatting.prettier.with({
+      filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'css', 'less', 'json' },
+    }),
     require("null-ls").builtins.diagnostics.eslint,
     -- require("null-ls").builtins.formatting.black,
     -- require("null-ls").builtins.formatting.gofmt,
