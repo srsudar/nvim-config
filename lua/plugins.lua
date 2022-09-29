@@ -32,7 +32,7 @@ return require('packer').startup(function()
   use 'hrsh7th/cmp-nvim-lsp'
   use 'saadparwaiz1/cmp_luasnip'
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
-  use '~/Projects/outer-sunset'
+  use 'malectro/outer-sunset'
   use {
     'jose-elias-alvarez/null-ls.nvim',
     config = function()

@@ -159,7 +159,7 @@ require('nvim-treesitter.configs').setup {
     },
   },
   playground = {
-    enable = true,
+    enable = false,
   },
 }
 
@@ -196,7 +196,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- Enable the following language servers
-local servers = { 'rust_analyzer', 'gopls', 'tailwindcss' }
+local servers = { 'rust_analyzer', 'gopls' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
@@ -309,7 +309,8 @@ require("null-ls").setup {
       filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'css', 'less', 'json' },
     }),
     require("null-ls").builtins.diagnostics.eslint,
-    -- require("null-ls").builtins.formatting.black,
+    require("null-ls").builtins.formatting.black,
+    -- require("null-ls").builtins.diagnostics.mypy,
     -- require("null-ls").builtins.formatting.gofmt,
     -- require("null-ls").builtins.formatting.rustfmt,
     -- require("null-ls").builtins.formatting.deno_fmt,
