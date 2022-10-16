@@ -14,41 +14,41 @@ vim.o.breakindent = true
 vim.opt.undofile = true
 
 --Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+-- vim.o.ignorecase = true
+-- vim.o.smartcase = true
 
 --Decrease update time
-vim.o.updatetime = 250
-vim.wo.signcolumn = 'yes'
+-- vim.o.updatetime = 250
+-- vim.wo.signcolumn = 'yes'
 
 --Set colorscheme
-vim.o.termguicolors = true
-vim.cmd [[colorscheme onedark]]
+-- vim.o.termguicolors = true
+-- vim.cmd [[colorscheme onedark]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
 --Set statusbar
-require('lualine').setup {
-  options = {
-    icons_enabled = false,
-    theme = 'onedark',
-    component_separators = '|',
-    section_separators = '',
-  },
-}
+-- require('lualine').setup {
+--   options = {
+--     icons_enabled = false,
+--     theme = 'onedark',
+--     component_separators = '|',
+--     section_separators = '',
+--   },
+-- }
 
 --Enable Comment.nvim
 require('Comment').setup()
 
 --Remap space as leader key
 -- vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
-vim.g.mapleader = ','
-vim.g.maplocalleader = ','
+-- vim.g.mapleader = ','
+-- vim.g.maplocalleader = ','
 
 --Remap for dealing with word wrap
-vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
-vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
+-- vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
+-- vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
 -- Highlight on yank
 vim.cmd [[
@@ -65,15 +65,15 @@ vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
 vim.g.indent_blankline_show_trailing_blankline_indent = false
 
 -- Gitsigns
-require('gitsigns').setup {
-  signs = {
-    add = { text = '+' },
-    change = { text = '~' },
-    delete = { text = '_' },
-    topdelete = { text = '‾' },
-    changedelete = { text = '~' },
-  },
-}
+-- require('gitsigns').setup {
+--   signs = {
+--     add = { text = '+' },
+--     change = { text = '~' },
+--     delete = { text = '_' },
+--     topdelete = { text = '‾' },
+--     changedelete = { text = '~' },
+--   },
+-- }
 
 -- Telescope
 require('telescope').setup {
