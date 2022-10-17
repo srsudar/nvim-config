@@ -16,7 +16,13 @@ lua require('kickstart')
 " map <leader>rv  :source ~/.config/nvim/init.vim<CR>
 
 " Change directory to current file
-" map <Leader>cd :lcd %:p:h<CR>
+map <Leader>cd :lcd %:p:h<CR>
+
+" leap behavior. Prepend with s basically
+nnoremap <leader>f <Plug>(leap-forward)
+nnoremap <leader>F <Plug>(leap-backward)
+nnoremap <leader>x <Plug>(leap-forward-till)
+nnoremap <leader>X <Plug>(leap-backward-till)
 
 " make ctrl+c work 
 " set clipboard=unnamed
