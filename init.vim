@@ -24,6 +24,14 @@ nnoremap <leader>F <Plug>(leap-backward)
 nnoremap <leader>x <Plug>(leap-forward-till)
 nnoremap <leader>X <Plug>(leap-backward-till)
 
+" neoformat for prettier
+let g:neoformat_try_node_exe = 1
+autocmd BufWritePre *.js Neoformat prettier
+autocmd BufWritePre *.ts Neoformat prettier
+autocmd BufWritePre *.jsx Neoformat prettier
+autocmd BufWritePre *.tsx Neoformat prettier
+
+
 " make ctrl+c work 
 " set clipboard=unnamed
 " set clipboard+=unnamedplus
@@ -31,18 +39,18 @@ nnoremap <leader>X <Plug>(leap-backward-till)
 " vnoremap <C-c> "*y
 
 " colorscheme molokai
-" colorscheme OuterSunset
-" if has('termguicolors')
-"   set t_Co=256
-"   set termguicolors
-"   " colorscheme OceanicNext
-"   " colorscheme ayu
-"   " colorscheme onedark
-"   " let g:onedark_terminal_italics = 1
-"   " colorscheme gruvbox
-"   " let g:gruvbox_contrast_dark = 'hard'
-"   " colorscheme dracula
-" endif
+colorscheme OuterSunset
+if has('termguicolors')
+  set t_Co=256
+  set termguicolors
+  " colorscheme OceanicNext
+  " colorscheme ayu
+  " colorscheme onedark
+  " let g:onedark_terminal_italics = 1
+  " colorscheme gruvbox
+  " let g:gruvbox_contrast_dark = 'hard'
+  " colorscheme dracula
+endif
 "
 " set background=dark
 " if exists('+guifont')

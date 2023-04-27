@@ -23,7 +23,7 @@ vim.opt.undofile = true
 
 --Set colorscheme
 -- vim.o.termguicolors = true
--- vim.cmd [[colorscheme onedark]]
+vim.cmd [[colorscheme darcula]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -187,13 +187,13 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Enable the following language servers
 local servers = { 'rust_analyzer', 'gopls' }
@@ -310,10 +310,10 @@ require("null-ls").setup {
     }),
     require("null-ls").builtins.diagnostics.eslint,
     require("null-ls").builtins.formatting.black,
-    -- require("null-ls").builtins.diagnostics.mypy,
-    -- require("null-ls").builtins.formatting.gofmt,
-    -- require("null-ls").builtins.formatting.rustfmt,
-    -- require("null-ls").builtins.formatting.deno_fmt,
+    require("null-ls").builtins.diagnostics.mypy,
+    require("null-ls").builtins.formatting.gofmt,
+    require("null-ls").builtins.formatting.rustfmt,
+    require("null-ls").builtins.formatting.deno_fmt,
   },
   root_dir = lspconfig.util.root_pattern(".prettierrc"),
 }

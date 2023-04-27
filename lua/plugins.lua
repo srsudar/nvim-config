@@ -33,6 +33,11 @@ return require('packer').startup(function()
   use 'saadparwaiz1/cmp_luasnip'
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
   use 'malectro/outer-sunset'
+  use 'joshdick/onedark.vim'
+  use 'doums/darcula'
+  use 'sbdchd/neoformat'
+  use 'ggandor/leap.nvim'
+  use 'github/copilot.vim'
   use {
     'jose-elias-alvarez/null-ls.nvim',
     config = function()
@@ -40,13 +45,13 @@ return require('packer').startup(function()
     end,
     requires = { "nvim-lua/plenary.nvim" },
   }
-  -- use {
-  --   "nvim-neo-tree/neo-tree.nvim",
-  --   requires = { 
-  --     "nvim-lua/plenary.nvim",
-  --     -- enabling this requires a patched font
-  --     -- "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
-  --     "MunifTanjim/nui.nvim" 
-  --   },
-  -- }
+  use {
+    "nvim-neo-tree/neo-tree.nvim",
+    requires = { 
+      "nvim-lua/plenary.nvim",
+      -- enabling this requires a patched font
+      -- "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim" 
+    },
+  }
 end)
