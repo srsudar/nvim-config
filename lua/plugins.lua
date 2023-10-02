@@ -10,6 +10,8 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim' -- Package manager
   use 'tpope/vim-fugitive' -- Git commands in nvim
   use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   -- NOTE (kyle): not sure what the point of this is
   -- use 'ludovicchabant/vim-gutentags' -- Automatic tags management
@@ -38,6 +40,11 @@ return require('packer').startup(function()
   use 'sbdchd/neoformat'
   use 'ggandor/leap.nvim'
   use 'github/copilot.vim'
+  use 'ruanyl/vim-gh-line'
+  use 'hashivim/vim-terraform'
+  use 'vim-airline/vim-airline'
+  use 'vim-airline/vim-airline-themes'
+  -- use 'ludovicchabant/vim-gutentags'
   use {
     'jose-elias-alvarez/null-ls.nvim',
     config = function()
@@ -47,11 +54,11 @@ return require('packer').startup(function()
   }
   use {
     "nvim-neo-tree/neo-tree.nvim",
-    requires = { 
+    requires = {
       "nvim-lua/plenary.nvim",
       -- enabling this requires a patched font
       -- "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim" 
+      "MunifTanjim/nui.nvim"
     },
   }
 end)
