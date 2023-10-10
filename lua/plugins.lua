@@ -61,4 +61,133 @@ return require('packer').startup(function()
       "MunifTanjim/nui.nvim"
     },
   }
+  -- fzf for searching
+  use {
+    'junegunn/fzf.vim',
+    requires = { 'junegunn/fzf', run = ':call fzf#install()' }
+ }
+  -- We need pseudocli for some of junegunn's other plugins
+  use 'junegunn/vim-pseudocl'
+  -- search with ack
+  use 'mileszs/ack.vim'
+  -- async builds
+  use 'tpope/vim-dispatch'
+  -- file browser on the left
+  use 'scrooloose/nerdtree'
+  -- and make the nerdtree file browser consistent between tabs
+  use 'jistr/vim-nerdtree-tabs'
+  -- and show git flags
+  use 'Xuyuanp/nerdtree-git-plugin'
+  -- more python support
+  -- Plug 'klen/python-mode'
+  -- surround things with other things
+  use 'tpope/vim-surround'
+  -- syntax highlighting
+  -- Plug 'dense-analysis/ale'
+  -- complementary mappings
+  use 'tpope/vim-unimpaired'
+  -- more sane regex
+  use 'nelstrom/vim-visual-star-search'
+  -- open alternate files (eg foo.h quick opens foo.c)
+  use 'vim-scripts/a.vim'
+  -- show git status of lines
+  use 'airblade/vim-gitgutter'
+  -- Smart alignment of text.
+  use 'junegunn/vim-easy-align'
+  -- Use ctrl+h,j,k,l to navigate tmux and vim windows
+  use 'christoomey/vim-tmux-navigator'
+  -- Use github-flavored markdown highlighting, not canonical md highlighthing
+  -- Plug 'jtratner/vim-flavored-markdown'
+  -- Prettier status line.
+  -- Plug 'vim-airline/vim-airline'
+  -- Plug 'vim-airline/vim-airline-themes'
+  -- Commenting with gc{motion}
+  use 'tomtom/tcomment_vim'
+  -- Define custom text objects. Required for vim-textobj-entire
+  use 'kana/vim-textobj-user'
+  -- Add 'whole file' objects with ae and ie (ignores leading/trailing whitespace)
+  use 'kana/vim-textobj-entire'
+  -- Allow . repeating using vim-surround
+  use 'tpope/vim-repeat'
+  -- Smarter CTRL-A and CTRL-X for addition/subtraction
+  use 'tpope/vim-speeddating'
+  -- Auto-conversion to snake, camel, mixed, upper  case with crs, crc, crm, cru
+  use 'tpope/vim-abolish'
+  -- Allow smarter pasting.
+  use 'svermeulen/vim-easyclip'
+  -- Word objects for columns of text
+  use 'coderifous/textobj-word-column.vim'
+  -- latex support
+  use 'lervag/vimtex'
+  -- Readline-style bindings in vim
+  use 'tpope/vim-rsi'
+  -- More information for <ctrl>+a character information, including unicode
+  use 'tpope/vim-characterize'
+  -- Fancy pants auto completion
+  -- Plug 'ycm-core/YouCompleteMe'
+  -- Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  -- Color TOML
+  use 'cespare/vim-toml'
+  -- Better markdown support. Need tabular and vim-markdown
+  use 'godlygeek/tabular'
+  -- markdown
+  -- Plug 'srsudar/vim-markdown'
+  -- Plug 'gabrielelana/vim-markdown'
+  -- Plug 'plasticboy/vim-markdown'
+  -- Better searching and highlighting defaults.
+  use 'junegunn/vim-oblique'
+  -- Show contents of registers using " and @ in insert and <C-CR> in insert
+  use 'junegunn/vim-peekaboo'
+  -- Browse git commits. fugitive must be installed first.
+  -- :GV to open commit browser
+  -- :GV! will only list commits for the current file
+  -- :GV over visual range will list commits for the lines
+  -- You can pass git log options to the command, e.g. :GV -S foobar.
+  use 'junegunn/gv.vim'
+  -- Tmux integration like writing to another pane.
+  -- Plug 'tpope/vim-tbone'
+  -- Show indentation levels with :IndentLinesToggle
+  use 'Yggdroot/indentLine'
+  -- Open the current file[pwd] in finder with go{f,F}.
+  use 'justinmk/vim-gtfo'
+  -- Highlighting for docker files
+  use 'honza/dockerfile.vim'
+  -- Help with unicode digraphs
+  use 'chrisbra/unicode.vim'
+  -- Polymer support
+  -- Plug 'webdesus/polymer-ide.vim'
+  -- Title Case operator with gt
+  use 'christoomey/vim-titlecase'
+  -- Snippets engine
+  use 'SirVer/ultisnips'
+  -- Snippet starers
+  use 'honza/vim-snippets'
+  -- Try to fix snippet suggestion
+  use 'ervandew/supertab'
+  -- json text objects with aj and ij
+  use 'tpope/vim-jdaddy'
+  -- Better grepping
+  use 'mhinz/vim-grepper'
+  -- Whitespace support
+  use 'ntpeters/vim-better-whitespace'
+  -- Dart support
+  use 'dart-lang/dart-vim-plugin'
+  use 'natebosch/vim-lsc'
+  use 'natebosch/vim-lsc-dart'
+  use 'natebosch/dartlang-snippets'
+  use 'google/vim-maktaba'
+  use 'google/vim-codefmt'
+  -- Glaive is needed for maktaba's flags. Use `:help :Glaive` for more. Also see
+  -- Glaive install command below.
+  use 'google/vim-glaive'
+  -- more language packs. In general this seems to supercede other language packs.
+  -- Plug 'sheerun/vim-polyglot'
+  -- No need to `:set paste`.
+  use 'ConradIrwin/vim-bracketed-paste'
+  -- Tagbar to see class outlines.
+  use 'preservim/tagbar'
+  -- Tmux integration
+  use 'preservim/vimux'
+  -- Better cpp highlighting.
+  use 'octol/vim-cpp-enhanced-highlight'
 end)
