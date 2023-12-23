@@ -31,8 +31,11 @@ autocmd BufWritePre *.ts Neoformat prettier
 autocmd BufWritePre *.jsx Neoformat prettier
 autocmd BufWritePre *.tsx Neoformat prettier
 
+" run our format-file fn on the current file
+nnoremap <Leader>f :silent exec '!npm run format-file ' . expand('%')<CR>
 
-" make ctrl+c work 
+
+" make ctrl+c work
 " set clipboard=unnamed
 " set clipboard+=unnamedplus
 " vnoremap <C-c>  "+y

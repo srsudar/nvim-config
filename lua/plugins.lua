@@ -112,6 +112,8 @@ return require('packer').startup(function()
   -- Smarter CTRL-A and CTRL-X for addition/subtraction
   use 'tpope/vim-speeddating'
   -- Auto-conversion to snake, camel, mixed, upper  case with crs, crc, crm, cru
+  --   NB: converting out of dash case, eg foo-bar, doesn't work because it is
+  --   blocked by vim's `iskeyword` definition. See: tpope/vim-abolish/issues/64
   use 'tpope/vim-abolish'
   -- Allow smarter pasting.
   use 'svermeulen/vim-easyclip'
