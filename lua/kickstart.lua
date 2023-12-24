@@ -28,6 +28,11 @@ vim.cmd [[colorscheme darcula]]
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
+-- Try to get copilot working. One of my other extensions claims tab, where
+-- `:Copilot status` says <tab> is already mapped. Set this to make it just
+-- assume to work.
+vim.g.copilot_assume_mapped = true
+
 --Set statusbar
 -- require('lualine').setup {
 --   options = {
