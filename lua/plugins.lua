@@ -6,6 +6,9 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 local use = require('packer').use
+-- NB: various Packer commands fail with too many open files for me. I can fix
+-- this by setting `ulimit -n 10240`, though I might have to do that per-shell.
+-- See: https://github.com/wbthomason/packer.nvim/issues/1199.
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim' -- Package manager
   use 'tpope/vim-fugitive' -- Git commands in nvim
@@ -73,11 +76,11 @@ return require('packer').startup(function()
   -- async builds
   use 'tpope/vim-dispatch'
   -- file browser on the left
-  use 'scrooloose/nerdtree'
+  -- use 'scrooloose/nerdtree'
   -- and make the nerdtree file browser consistent between tabs
-  use 'jistr/vim-nerdtree-tabs'
+  -- use 'jistr/vim-nerdtree-tabs'
   -- and show git flags
-  use 'Xuyuanp/nerdtree-git-plugin'
+  -- use 'Xuyuanp/nerdtree-git-plugin'
   -- more python support
   -- Plug 'klen/python-mode'
   -- surround things with other things
@@ -165,7 +168,7 @@ return require('packer').startup(function()
   -- Snippet starers
   use 'honza/vim-snippets'
   -- Try to fix snippet suggestion
-  use 'ervandew/supertab'
+  -- use 'ervandew/supertab'
   -- json text objects with aj and ij
   use 'tpope/vim-jdaddy'
   -- Better grepping
@@ -177,11 +180,11 @@ return require('packer').startup(function()
   use 'natebosch/vim-lsc'
   use 'natebosch/vim-lsc-dart'
   use 'natebosch/dartlang-snippets'
-  use 'google/vim-maktaba'
-  use 'google/vim-codefmt'
+  -- use 'google/vim-maktaba'
+  -- use 'google/vim-codefmt'
   -- Glaive is needed for maktaba's flags. Use `:help :Glaive` for more. Also see
   -- Glaive install command below.
-  use 'google/vim-glaive'
+  -- use 'google/vim-glaive'
   -- more language packs. In general this seems to supercede other language packs.
   -- Plug 'sheerun/vim-polyglot'
   -- No need to `:set paste`.
@@ -192,4 +195,14 @@ return require('packer').startup(function()
   use 'preservim/vimux'
   -- Better cpp highlighting.
   use 'octol/vim-cpp-enhanced-highlight'
+  -- This mostly doesn't work thanks to TS. You can get it working with
+  -- `:TSBufDisable highlight`.
+  use 'luochen1990/rainbow'
+  -- For clojure.
+  use 'guns/vim-sexp'
+  use 'tpope/vim-sexp-mappings-for-regular-people'
+  -- This is recommended by this guy, evaluating stuff in real-time, but I don't
+  -- really get it so turning it off.
+  -- https://endot.org/2023/05/27/vim-clojure-dev-2023/
+  -- use 'Olical/conjure'
 end)

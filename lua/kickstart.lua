@@ -99,6 +99,11 @@ require('telescope').setup {
 require('telescope').load_extension 'fzf'
 
 --Add leader shortcuts
+-- Do this to reload treesitter. See:
+-- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#i-experience-weird-highlighting-issues-similar-to-78
+-- :write | edit | TSBufEnable highlight
+vim.api.nvim_set_keymap('n', '<leader>r', [[:write | edit | TSBufEnable highlight<CR>]], { noremap = true, silent = true })
+
 vim.api.nvim_set_keymap('n', '<leader>b', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>p', [[<cmd>lua require('telescope.builtin').git_files({previewer = false})<CR>]], { noremap = true, silent = true })
