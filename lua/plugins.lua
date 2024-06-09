@@ -205,4 +205,5 @@ return require('packer').startup(function()
   -- really get it so turning it off.
   -- https://endot.org/2023/05/27/vim-clojure-dev-2023/
   -- use 'Olical/conjure'
+  use 'andymass/vim-matchup'
 end)
