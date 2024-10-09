@@ -98,6 +98,21 @@ require('telescope').setup {
 -- Enable telescope fzf native
 require('telescope').load_extension 'fzf'
 
+-- require('catppuccin').setup({
+--   integrations = {
+--     cmp = true,
+--     gitsigns = true,
+--     nvimtree = true,
+--     treesitter = true,
+--     notify = false,
+--     markdown = true,
+--     mini = {
+--       enabled = true,
+--       indentscope_color = "",
+--     },
+--   }
+-- })
+
 --Add leader shortcuts
 -- Do this to reload treesitter. See:
 -- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#i-experience-weird-highlighting-issues-similar-to-78

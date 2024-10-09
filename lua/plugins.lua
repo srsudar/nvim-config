@@ -40,6 +40,15 @@ return require('packer').startup(function()
   use 'malectro/outer-sunset'
   use 'joshdick/onedark.vim'
   use 'doums/darcula'
+  use 'rebelot/kanagawa.nvim'
+  use 'catppuccin/nvim'
+  use 'folke/tokyonight.nvim'
+  use 'sainnhe/sonokai'
+  use 'sainnhe/everforest'
+  use 'EdenEast/nightfox.nvim'
+  use 'rose-pine/neovim'
+  use 'shaunsingh/nord.nvim'
+  use 'junegunn/seoul256.vim'
   use 'sbdchd/neoformat'
   use 'ggandor/leap.nvim'
   use 'github/copilot.vim'
@@ -138,7 +147,7 @@ return require('packer').startup(function()
   -- markdown
   -- Plug 'srsudar/vim-markdown'
   -- Plug 'gabrielelana/vim-markdown'
-  -- Plug 'plasticboy/vim-markdown'
+  -- use 'plasticboy/vim-markdown'
   -- Better searching and highlighting defaults.
   use 'junegunn/vim-oblique'
   -- Show contents of registers using " and @ in insert and <C-CR> in insert
