@@ -23,7 +23,7 @@ vim.opt.undofile = true
 
 --Set colorscheme
 -- vim.o.termguicolors = true
-vim.cmd [[colorscheme darcula]]
+-- vim.cmd [[colorscheme darcula]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -42,9 +42,6 @@ vim.g.copilot_assume_mapped = true
 --     section_separators = '',
 --   },
 -- }
-
---Enable Comment.nvim
-require('Comment').setup()
 
 --Remap space as leader key
 -- vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
@@ -81,22 +78,22 @@ vim.g.indent_blankline_show_trailing_blankline_indent = false
 -- }
 
 -- Telescope
-require('telescope').setup {
-  defaults = {
-    mappings = {
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      },
-    },
-    file_ignore_patterns = {
-      "node_modules",
-    },
-  },
-}
+-- require('telescope').setup {
+--   defaults = {
+--     mappings = {
+--       i = {
+--         ['<C-u>'] = false,
+--         ['<C-d>'] = false,
+--       },
+--     },
+--     file_ignore_patterns = {
+--       "node_modules",
+--     },
+--   },
+-- }
 
 -- Enable telescope fzf native
-require('telescope').load_extension 'fzf'
+-- require('telescope').load_extension 'fzf'
 
 -- require('catppuccin').setup({
 --   integrations = {
@@ -131,62 +128,6 @@ vim.api.nvim_set_keymap('n', '<leader>/', [[<cmd>lua require('telescope.builtin'
 vim.api.nvim_set_keymap('n', '<leader>sp', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], { noremap = true, silent = true })
-
--- Treesitter configuration
--- Parsers must be installed manually via :TSInstall
-require('nvim-treesitter.configs').setup {
-  highlight = {
-    enable = true, -- false will disable the whole extension
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = 'gnn',
-      node_incremental = 'grn',
-      scope_incremental = 'grc',
-      node_decremental = 'grm',
-    },
-  },
-  indent = {
-    enable = true,
-  },
-  textobjects = {
-    select = {
-      enable = true,
-      lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
-        ['af'] = '@function.outer',
-        ['if'] = '@function.inner',
-        ['ac'] = '@class.outer',
-        ['ic'] = '@class.inner',
-      },
-    },
-    move = {
-      enable = true,
-      set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        [']m'] = '@function.outer',
-        [']]'] = '@class.outer',
-      },
-      goto_next_end = {
-        [']M'] = '@function.outer',
-        [']['] = '@class.outer',
-      },
-      goto_previous_start = {
-        ['[m'] = '@function.outer',
-        ['[['] = '@class.outer',
-      },
-      goto_previous_end = {
-        ['[M'] = '@function.outer',
-        ['[]'] = '@class.outer',
-      },
-    },
-  },
-  playground = {
-    enable = false,
-  },
-}
 
 -- lua_ls = {
 --   Lua = {
@@ -335,43 +276,43 @@ cmp.setup {
 -- vim: ts=2 sts=2 sw=2 et
 
 -- null-ls setup
-require("null-ls").setup {
-  sources = {
-    require("null-ls").builtins.formatting.prettier.with({
-      filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'css', 'less', 'json' },
-    }),
-    require("null-ls").builtins.diagnostics.eslint,
-    require("null-ls").builtins.formatting.black,
-    require("null-ls").builtins.diagnostics.mypy,
-    require("null-ls").builtins.formatting.gofmt,
-    require("null-ls").builtins.formatting.rustfmt,
-    require("null-ls").builtins.formatting.deno_fmt,
-  },
-  root_dir = lspconfig.util.root_pattern(".prettierrc"),
-}
+-- require("null-ls").setup {
+--   sources = {
+--     require("null-ls").builtins.formatting.prettier.with({
+--       filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'css', 'less', 'json' },
+--     }),
+--     require("null-ls").builtins.diagnostics.eslint,
+--     require("null-ls").builtins.formatting.black,
+--     require("null-ls").builtins.diagnostics.mypy,
+--     require("null-ls").builtins.formatting.gofmt,
+--     require("null-ls").builtins.formatting.rustfmt,
+--     require("null-ls").builtins.formatting.deno_fmt,
+--   },
+--   root_dir = lspconfig.util.root_pattern(".prettierrc"),
+-- }
 
 -- NeoTree setup
-require('neo-tree').setup {
-  filesystem = {
-    window = {
-      mappings = {
-        ["<bs>"] = "navigate_up",
-        ["U"] = "navigate_up",
-				["T"] = "open_tab",
-      }
-    },
-		commands = {
-			open_tab = function (state)
-				local utils = require('neo-tree.utils')
-				local tree = state.tree
-  			local node = tree:get_node()
-				local path = node:get_id()
-				utils.open_file(state, path, 'tabedit') 
-			end
-		},
-  },
-}
-vim.cmd([[nnoremap \ :NeoTreeRevealToggle<cr>]])
+-- require('neo-tree').setup {
+--   filesystem = {
+--     window = {
+--       mappings = {
+--         ["<bs>"] = "navigate_up",
+--         ["U"] = "navigate_up",
+-- 				["T"] = "open_tab",
+--       }
+--     },
+-- 		commands = {
+-- 			open_tab = function (state)
+-- 				local utils = require('neo-tree.utils')
+-- 				local tree = state.tree
+--   			local node = tree:get_node()
+-- 				local path = node:get_id()
+-- 				utils.open_file(state, path, 'tabedit') 
+-- 			end
+-- 		},
+--   },
+-- }
+-- vim.cmd([[nnoremap \ :NeoTreeRevealToggle<cr>]])
 
 -- trying this?
 vim.cmd([[ command! -nargs=1 Browse silent exec '!open "<args>"' ]])
