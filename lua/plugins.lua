@@ -254,8 +254,6 @@ return require('packer').startup(function(use)
   -- use 'ervandew/supertab'
   -- json text objects with aj and ij
   use 'tpope/vim-jdaddy'
-  -- Better grepping
-  use 'mhinz/vim-grepper'
   -- Whitespace support
   use 'ntpeters/vim-better-whitespace'
   -- Dart support
