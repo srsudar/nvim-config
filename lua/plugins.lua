@@ -24,13 +24,13 @@ return require('packer').startup(function(use)
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
   -- this claims to be faster than the default typescript server
-  use {
-    "pmizio/typescript-tools.nvim",
-    requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    config = function()
-      require("typescript-tools").setup {}
-    end,
-  }
+  -- use {
+  --   "pmizio/typescript-tools.nvim",
+  --   requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  --   config = function()
+  --     require("typescript-tools").setup {}
+  --   end,
+  -- }
   use {
     'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
     config = function()
