@@ -41,6 +41,7 @@ nnoremap <Leader>f :silent exec '!npm run format-file ' . expand('%')<CR>
 " vnoremap <C-c> "*y
 
 " colorscheme molokai
+" colorscheme vim
 colorscheme OuterSunset
 if has('termguicolors')
   set t_Co=256
