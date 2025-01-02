@@ -21,8 +21,8 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- Package manager
   use 'tpope/vim-fugitive' -- Git commands in nvim
   use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
-  use 'williamboman/mason.nvim'
-  use 'williamboman/mason-lspconfig.nvim'
+  -- use 'williamboman/mason.nvim'
+  -- use 'williamboman/mason-lspconfig.nvim'
   -- this claims to be faster than the default typescript server
   -- use {
   --   "pmizio/typescript-tools.nvim",
@@ -51,7 +51,7 @@ return require('packer').startup(function(use)
   -- Highlight, edit, and navigate code using a fast incremental parsing library
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
+    -- run = ':TSUpdate',
     config = function()
       -- Treesitter configuration
       -- Parsers must be installed manually via :TSInstall
@@ -121,7 +121,6 @@ return require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
   use 'malectro/outer-sunset'
   use 'joshdick/onedark.vim'
-  use 'doums/darcula'
   use 'rebelot/kanagawa.nvim'
   use 'catppuccin/nvim'
   use 'folke/tokyonight.nvim'
@@ -139,13 +138,27 @@ return require('packer').startup(function(use)
   use 'vim-airline/vim-airline'
   use 'vim-airline/vim-airline-themes'
   -- use 'ludovicchabant/vim-gutentags'
-  -- use {
-  --   'jose-elias-alvarez/null-ls.nvim',
-  --   config = function()
-  --       require("null-ls").setup()
-  --   end,
-  --   requires = { "nvim-lua/plenary.nvim" },
-  -- }
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function()
+      local lspconfig = require 'lspconfig'
+      require("null-ls").setup {
+        sources = {
+          require("null-ls").builtins.formatting.prettier.with({
+            filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'css', 'less', 'json' },
+          }),
+          require("null-ls").builtins.diagnostics.eslint,
+          require("null-ls").builtins.formatting.black,
+          require("null-ls").builtins.diagnostics.mypy,
+          require("null-ls").builtins.formatting.gofmt,
+          require("null-ls").builtins.formatting.rustfmt,
+          require("null-ls").builtins.formatting.deno_fmt,
+        },
+        root_dir = lspconfig.util.root_pattern(".prettierrc"),
+      }
+    end,
+    requires = { "nvim-lua/plenary.nvim" },
+  }
   --use {
   --  "nvim-neo-tree/neo-tree.nvim",
   --  requires = {
@@ -286,7 +299,7 @@ return require('packer').startup(function(use)
   use 'octol/vim-cpp-enhanced-highlight'
   -- This mostly doesn't work thanks to TS. You can get it working with
   -- `:TSBufDisable highlight`.
-  use 'luochen1990/rainbow'
+  -- use 'luochen1990/rainbow'
   -- For clojure.
   use 'guns/vim-sexp'
   use 'tpope/vim-sexp-mappings-for-regular-people'

@@ -42,7 +42,7 @@ nnoremap <Leader>f :silent exec '!npm run format-file ' . expand('%')<CR>
 
 " colorscheme molokai
 " colorscheme vim
-colorscheme OuterSunset
+" colorscheme OuterSunset
 if has('termguicolors')
   set t_Co=256
   set termguicolors
@@ -182,6 +182,7 @@ if exists('+colorcolumn')
 else
 	au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>81v.\+', -1)
 endif
+hi! link ColorColumn OuterSunset_pink_0_sign
 
 " Change the color for better-whitespace plugin
 let g:better_whitespace_ctermcolor='darkblue'
@@ -426,4 +427,5 @@ set timeoutlen=1000 ttimeoutlen=0
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath=&runtimepath
 colorscheme OuterSunset
+hi! ColorColumn guibg='DarkRed'
 " source ~/.vimrc
