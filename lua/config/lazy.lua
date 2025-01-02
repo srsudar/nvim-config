@@ -18,7 +18,7 @@ vim.opt.rtp:prepend(lazypath)
 -- NB: various Packer commands fail with too many open files for me. I can fix
 -- this by setting `ulimit -n 10240`, though I might have to do that per-shell.
 -- See: https://github.com/wbthomason/packer.nvim/issues/1199.
-return require('lazy').setup({
+require('lazy').setup({
   'tpope/vim-fugitive',     -- Git commands in nvim
   'tpope/vim-rhubarb',      -- Fugitive-companion to interact with github
   -- use 'williamboman/mason.nvim'

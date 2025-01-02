@@ -1,6 +1,6 @@
 " Load Lazy plugins
-lua require('lua.lazy')
-" lua require('kickstart')
+lua require('config.lazy')
+lua require('kickstart')
 
 "
 " Behavior Configuration
