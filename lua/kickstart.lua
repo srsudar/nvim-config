@@ -13,18 +13,6 @@ vim.o.breakindent = true
 --Save undo history
 vim.opt.undofile = true
 
---Case insensitive searching UNLESS /C or capital in search
--- vim.o.ignorecase = true
--- vim.o.smartcase = true
-
---Decrease update time
--- vim.o.updatetime = 250
--- vim.wo.signcolumn = 'yes'
-
---Set colorscheme
--- vim.o.termguicolors = true
--- vim.cmd [[colorscheme darcula]]
-
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
@@ -32,25 +20,6 @@ vim.o.completeopt = 'menuone,noselect'
 -- `:Copilot status` says <tab> is already mapped. Set this to make it just
 -- assume to work.
 vim.g.copilot_assume_mapped = true
-
---Set statusbar
--- require('lualine').setup {
---   options = {
---     icons_enabled = false,
---     theme = 'onedark',
---     component_separators = '|',
---     section_separators = '',
---   },
--- }
-
---Remap space as leader key
--- vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
--- vim.g.mapleader = ','
--- vim.g.maplocalleader = ','
-
---Remap for dealing with word wrap
--- vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
--- vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
 -- Highlight on yank
 vim.cmd [[
@@ -65,50 +34,6 @@ vim.g.indent_blankline_char = '┊'
 vim.g.indent_blankline_filetype_exclude = { 'help', 'packer' }
 vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
 vim.g.indent_blankline_show_trailing_blankline_indent = false
-
--- Gitsigns
--- require('gitsigns').setup {
---   signs = {
---     add = { text = '+' },
---     change = { text = '~' },
---     delete = { text = '_' },
---     topdelete = { text = '‾' },
---     changedelete = { text = '~' },
---   },
--- }
-
--- Telescope
--- require('telescope').setup {
---   defaults = {
---     mappings = {
---       i = {
---         ['<C-u>'] = false,
---         ['<C-d>'] = false,
---       },
---     },
---     file_ignore_patterns = {
---       "node_modules",
---     },
---   },
--- }
-
--- Enable telescope fzf native
--- require('telescope').load_extension 'fzf'
-
--- require('catppuccin').setup({
---   integrations = {
---     cmp = true,
---     gitsigns = true,
---     nvimtree = true,
---     treesitter = true,
---     notify = false,
---     markdown = true,
---     mini = {
---       enabled = true,
---       indentscope_color = "",
---     },
---   }
--- })
 
 --Add leader shortcuts
 -- Do this to reload treesitter. See:
@@ -128,13 +53,6 @@ vim.api.nvim_set_keymap('n', '<leader>/', [[<cmd>lua require('telescope.builtin'
 vim.api.nvim_set_keymap('n', '<leader>sp', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], { noremap = true, silent = true })
-
--- lua_ls = {
---   Lua = {
---     workspace = { checkThirdParty = false },
---     telemetry = { enable = false },
---   },
--- },
 
 -- Diagnostic keymaps
 vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
@@ -273,46 +191,6 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
--- vim: ts=2 sts=2 sw=2 et
-
--- null-ls setup
--- require("null-ls").setup {
---   sources = {
---     require("null-ls").builtins.formatting.prettier.with({
---       filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'css', 'less', 'json' },
---     }),
---     require("null-ls").builtins.diagnostics.eslint,
---     require("null-ls").builtins.formatting.black,
---     require("null-ls").builtins.diagnostics.mypy,
---     require("null-ls").builtins.formatting.gofmt,
---     require("null-ls").builtins.formatting.rustfmt,
---     require("null-ls").builtins.formatting.deno_fmt,
---   },
---   root_dir = lspconfig.util.root_pattern(".prettierrc"),
--- }
-
--- NeoTree setup
--- require('neo-tree').setup {
---   filesystem = {
---     window = {
---       mappings = {
---         ["<bs>"] = "navigate_up",
---         ["U"] = "navigate_up",
--- 				["T"] = "open_tab",
---       }
---     },
--- 		commands = {
--- 			open_tab = function (state)
--- 				local utils = require('neo-tree.utils')
--- 				local tree = state.tree
---   			local node = tree:get_node()
--- 				local path = node:get_id()
--- 				utils.open_file(state, path, 'tabedit') 
--- 			end
--- 		},
---   },
--- }
--- vim.cmd([[nnoremap \ :NeoTreeRevealToggle<cr>]])
 
 -- trying this?
 vim.cmd([[ command! -nargs=1 Browse silent exec '!open "<args>"' ]])
