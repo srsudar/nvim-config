@@ -1,6 +1,6 @@
-" Load Packer plugins
-lua require('plugins')
-lua require('kickstart')
+" Load Lazy plugins
+lua require('lua.lazy')
+" lua require('kickstart')
 
 "
 " Behavior Configuration
@@ -425,7 +425,7 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 set timeoutlen=1000 ttimeoutlen=0
 
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath=&runtimepath
+" let &packpath=&runtimepath
 colorscheme OuterSunset
 hi! ColorColumn guibg='DarkRed'
 " source ~/.vimrc
