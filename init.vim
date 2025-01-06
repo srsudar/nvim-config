@@ -1,6 +1,6 @@
 " Load Lazy plugins
 lua require('config.lazy')
-" lua require('kickstart')
+lua require('kickstart')
 
 "
 " Behavior Configuration
@@ -350,7 +350,7 @@ xnoremap & :&&<CR>
 " According to Practical Vim, normally <C-l> clears and redraws the creen.
 " This mapping builds on top of the usual behavior by muting search
 " highlighting. FOR WHATEVER REASON THIS IS NOT WORKING
-nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+" nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 " Tab completion
 set wildmode=longest,list
