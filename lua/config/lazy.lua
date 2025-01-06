@@ -596,7 +596,16 @@ require('lazy').setup({
   'sbdchd/neoformat',
   'ggandor/leap.nvim',
   'github/copilot.vim',
-  'ruanyl/vim-gh-line',
+  {
+    'ruanyl/vim-gh-line',
+    event = 'BufReadPre',
+    config = function()
+      vim.g.gh_line_map_default = 0
+      vim.g.gh_line_blame_map_default = 1
+      vim.g.gh_line_map = 'ght'
+      vim.g.gh_line_blame_map = 'ghb'
+    end,
+  },
   'hashivim/vim-terraform',
   'vim-airline/vim-airline',
   'vim-airline/vim-airline-themes',
