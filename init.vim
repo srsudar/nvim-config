@@ -31,7 +31,7 @@ autocmd BufWritePre *.jsx Neoformat prettier
 autocmd BufWritePre *.tsx Neoformat prettier
 
 " run our format-file fn on the current file
-nnoremap <Leader>f :silent exec '!npm run format-file ' . expand('%')<CR>
+nnoremap <Leader>f :silent exec '!npm run format-write ' . expand('%')<CR>
 
 
 " make ctrl+c work
@@ -216,14 +216,14 @@ set autoindent
 " highlight SpecialKey ctermfg=blue ctermbg=blue
 
 " Settings for the ALE linter.
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   }
-" Mappings in the style of unimpaired-next
-nmap <silent> [W <Plug>(ale_first)
-nmap <silent> [w <Plug>(ale_previous)
-nmap <silent> ]w <Plug>(ale_next)
-nmap <silent> ]W <Plug>(ale_last)
+" let g:ale_linters = {
+" \   'javascript': ['eslint'],
+" \   }
+" " Mappings in the style of unimpaired-next
+" nmap <silent> [W <Plug>(ale_first)
+" nmap <silent> [w <Plug>(ale_previous)
+" nmap <silent> ]w <Plug>(ale_next)
+" nmap <silent> ]W <Plug>(ale_last)
 
 " 2 spaces by default
 set tabstop=2
